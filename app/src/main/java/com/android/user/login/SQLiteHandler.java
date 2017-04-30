@@ -9,15 +9,12 @@ import android.util.Log;
 
 import java.util.HashMap;
 
-/**
- * Created by Isfahani on 28-Mei-16.
- * Modified from AndroidHive.info
- */
+
 public class SQLiteHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "daengid_DaengBelajar";
-    private static final String TABLE_USER = "bjr_belajarlogin";
+    private static final String DATABASE_NAME = "Name";
+    private static final String TABLE_USER = "Tabela";
     private static final String KEY_NAME = "name";
     private static final String KEY_PASSWORD = "password";
 
@@ -30,7 +27,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_NAME + " TEXT," + KEY_PASSWORD + " TEXT" + ")";
         sqLiteDatabase.execSQL(CREATE_LOGIN_TABLE);
-        Log.d("Isfa", "Database tables created");
+        Log.d("DB", "Tabela banco de dados criada");
     }
 
     @Override
@@ -46,11 +43,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(KEY_PASSWORD, password); // Password
         long id = db.insert(TABLE_USER, null, values);
         db.close();
-        Log.d("Isfa", "New user inserted into sqlite: " + id);
+        Log.d("BD", "Novo usuário inserido: " + id);
     }
 
     /**
-     * Getting user data from database
+     * Obtendo dados do usuário do banco de dados
      * */
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
@@ -64,7 +61,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-        Log.d("Isfa", "Fetching user from Sqlite: " + user.toString());
+        Log.d("BD", "Buscando usuário: " + user.toString());
 
         return user;
     }
@@ -74,6 +71,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.delete(TABLE_USER, null, null);
         db.close();
 
-        Log.d("Isfa", "Deleted all user info from sqlite");
+        Log.d("BD", "Excluindo todas as informações do usuário");
     }
 }
